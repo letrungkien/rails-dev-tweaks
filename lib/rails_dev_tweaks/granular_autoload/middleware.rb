@@ -24,8 +24,8 @@ class RailsDevTweaks::GranularAutoload::Middleware
 
       # No-op if this is the first request.  The initializers take care of that one.
       if self.class.processed_a_request? && reload_dependencies?
-        ActionDispatch::Reloader.cleanup!
-        ActionDispatch::Reloader.prepare!
+        Rails.application.reloader.reload!
+        Rails.application.reloader.prepare!
       end
       self.class.processed_a_request = true
 
